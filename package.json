@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js --exec babel-node"
+    "dev": "nodemon ./index.js --exec babel-node",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -13,13 +14,35 @@
     "@babel/core": "^7.16.0",
     "@babel/node": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "husky": "^7.0.0"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "arrowParens": "avoid"
   },
   "dependencies": {
     "@graphql-tools/schema": "^8.3.1",
     "apollo-server-express": "^2.21.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "graphql": "^15.7.2"
+    "graphql": "^15.7.2",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.4.1"
+  },
+  "lint-staged": {
+    "linters": {
+      "**/*.js": [
+        "prettier --write"
+      ]
+    },
+    "ignore": [
+      "node_modules",
+      "package.lock.json",
+      "package.json"
+    ]
   }
 }
