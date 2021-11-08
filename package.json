@@ -34,15 +34,8 @@
     "prettier": "^2.4.1"
   },
   "lint-staged": {
-    "linters": {
-      "**/*.js": [
-        "prettier --write"
-      ]
-    },
-    "ignore": [
-      "node_modules",
-      "package.lock.json",
-      "package.json"
+    "(config|graphql)/**/*.js": [
+      "prettier --write"
     ]
   }
 }
