@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./index.js --exec babel-node",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "format": "prettier --write '**/*.js'"
+
   },
   "keywords": [],
   "author": "",
@@ -34,7 +36,7 @@
     "prettier": "^2.4.1"
   },
   "lint-staged": {
-    "(config|graphql)/**/*.js": [
+    "**/*.js": [
       "prettier --write"
     ]
   }
