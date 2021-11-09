@@ -1,7 +1,7 @@
 type User implements Timestamps {
   id: ID!
-  firstname: String!
-  lastname: String!
+  firstName: String!
+  lastName: String!
   email: String!
 
   createdAt: Date!
@@ -9,13 +9,13 @@ type User implements Timestamps {
 }
 
 input UserCreateInput {
-  firstname: String!
-  lastname: String!
+  firstName: String!
+  lastName: String!
   email: String!
 }
 
 input UserUpdateInput {
-  firstname: String
-  lastname: String
+  firstName: String
+  lastName: String
   email: String
 }

@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon ./index.js --exec babel-node",
     "prepare": "husky install",
-    "format": "prettier --write '**/*.js'"
-
+    "format": "prettier --write '**/*.js'",
+    "db:seed": "babel-node ./db/scripts/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +16,8 @@
     "@babel/core": "^7.16.0",
     "@babel/node": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
-    "nodemon": "^2.0.14",
-    "husky": "^7.0.0"
+    "husky": "^7.0.0",
+    "nodemon": "^2.0.14"
   },
   "prettier": {
     "semi": false,
@@ -33,6 +33,7 @@
     "graphql": "^15.7.2",
     "husky": "^6.0.0",
     "lint-staged": "^11.2.6",
+    "mongoose": "^6.0.12",
     "prettier": "^2.4.1"
   },
   "lint-staged": {

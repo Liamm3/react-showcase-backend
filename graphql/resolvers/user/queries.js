@@ -1,6 +1,8 @@
+import { User } from '../../../db/models'
+
 const userQueries = {
-  users: async (_, args) => {},
-  user: async (_, args) => {}
+  users: async () => await User.find(),
+  user: async (_, { id }) => await User.findById(id)
 }
 
 export default userQueries
