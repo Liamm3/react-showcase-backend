@@ -1,4 +1,4 @@
-import { User } from '../../../db/models'
+import { User, MemberOf } from '../../../db/models'
 
 const userMutations = {
   createUser: async (_, { user }) => {
@@ -16,6 +16,16 @@ const userMutations = {
       }
     )
     return updatedUser
+  },
+  addUserToGroup: async (_, { id, group }) => {
+    const user = await User.findById(id)
+
+    if (user) {
+      const memberOf = new MemberOf({ group, user: id })
+      await memberOf.save()
+    }
+
+    return user
   }
 }
 

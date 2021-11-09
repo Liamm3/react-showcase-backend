@@ -3,6 +3,7 @@ type User implements Timestamps {
   firstName: String!
   lastName: String!
   email: String!
+  groups: [Group]
 
   createdAt: Date!
   updatedAt: Date!

@@ -2,6 +2,7 @@ type Group implements Timestamps {
   id: ID!
   name: String!
   description: String!
+  users: [User]
 
   createdAt: Date!
   updatedAt: Date!
