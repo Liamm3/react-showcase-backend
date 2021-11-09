@@ -1,12 +1,16 @@
 import { userMutations, userQueries } from './user'
+import { postMutations, postQueries, postFields } from './post'
 
 const resolvers = {
   Query: {
-    ...userQueries
+    ...userQueries,
+    ...postQueries
   },
   Mutation: {
-    ...userMutations
-  }
+    ...userMutations,
+    ...postMutations
+  },
+  ...postFields
 }
 
 export default resolvers

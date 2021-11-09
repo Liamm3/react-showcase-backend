@@ -3,9 +3,15 @@ scalar Date
 type Query {
   users: [User]!
   user(id: ID!): User
+
+  posts: [Post]!
+  post(id: ID!): Post
 }
 
 type Mutation {
   createUser(user: UserCreateInput!): User!
   updateUser(id: ID!, user: UserUpdateInput!): User!
+
+  createPost(post: PostCreateInput!): Post!
+  updatePost(id: ID!, post: PostUpdateInput): Post!
 }
