@@ -1,12 +1,13 @@
 import { Group } from '../../../db/models'
 
 const groupMutations = {
-  createGroup: async (_, { group }) => {
+  createGroup: async (_, { group }, { loaders }) => {
     const newGroup = new Group(group)
-    return newGroup.save()
+    const savedGroup = await newGroup.save()
+    return loaders.group.one(savedGroup._id)
   },
-  updateGroup: async (_, { id, group }) => {
-    const updatedGroup = await Group.findByIdAndUpdate(
+  updateGroup: async (_, { id, group }, { loaders }) => {
+    await Group.findByIdAndUpdate(
       id,
       {
         $set: { ...group }
@@ -15,7 +16,7 @@ const groupMutations = {
         new: true
       }
     )
-    return updatedGroup
+    return loaders.group.one(id)
   }
 }
 

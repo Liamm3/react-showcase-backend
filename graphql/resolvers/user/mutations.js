@@ -1,12 +1,13 @@
 import { User, MemberOf } from '../../../db/models'
 
 const userMutations = {
-  createUser: async (_, { user }) => {
+  createUser: async (_, { user }, { loaders }) => {
     const newUser = new User(user)
-    return newUser.save()
+    const savedUser = await newUser.save()
+    return loaders.user.one(savedUser._id)
   },
-  updateUser: async (_, { id, user }) => {
-    const updatedUser = await User.findByIdAndUpdate(
+  updateUser: async (_, { id, user }, { loaders }) => {
+    await User.findByIdAndUpdate(
       id,
       {
         $set: { ...user }
@@ -15,9 +16,9 @@ const userMutations = {
         new: true
       }
     )
-    return updatedUser
+    return loaders.user.one(id)
   },
-  addUserToGroup: async (_, { id, group }) => {
+  addUserToGroup: async (_, { id, group }, { loaders }) => {
     const user = await User.findById(id)
 
     if (user) {
@@ -25,7 +26,7 @@ const userMutations = {
       await memberOf.save()
     }
 
-    return user
+    return loaders.user.one(id)
   }
 }
 

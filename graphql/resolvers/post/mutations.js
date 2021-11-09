@@ -1,12 +1,13 @@
 import { Post } from '../../../db/models'
 
 const postMutations = {
-  createPost: async (_, { post }) => {
+  createPost: async (_, { post }, { loaders }) => {
     const newPost = new Post(post)
-    return await newPost.save()
+    const savedPost = await newPost.save()
+    return loaders.post.one(savedPost._id)
   },
-  updatePost: async (_, { id, post }) => {
-    const updatedPost = await Post.findByIdAndUpdate(
+  updatePost: async (_, { id, post }, { loaders }) => {
+    await Post.findByIdAndUpdate(
       id,
       {
         $set: { ...post }
@@ -15,7 +16,7 @@ const postMutations = {
         new: true
       }
     )
-    return updatedPost
+    return loaders.post.one(id)
   }
 }
 
