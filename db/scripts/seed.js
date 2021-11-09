@@ -2,7 +2,7 @@ import { connection } from 'mongoose'
 import { readFileSync } from 'fs'
 
 import connectDB from '..'
-import { Post, Tag, User } from '../models'
+import { Group, Post, Tag, User } from '../models'
 
 const seed = async () => {
   console.log('Cleaning database')
@@ -11,6 +11,10 @@ const seed = async () => {
   await connection.dropDatabase()
 
   console.log('Database clean')
+
+  const rawGroups = readFileSync(__dirname + '/../mock/groups.json')
+  const groups = JSON.parse(rawGroups).map(group => new Group(group))
+
   const rawUsers = readFileSync(__dirname + '/../mock/users.json')
   const users = JSON.parse(rawUsers).map(user => new User(user))
 
@@ -22,7 +26,8 @@ const seed = async () => {
 
   const saves = [
     ...users.map(user => user.save()),
-    ...posts.map(post => post.save())
+    ...posts.map(post => post.save()),
+    ...groups.map(group => group.save())
   ]
   await Promise.all(saves)
 

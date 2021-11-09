@@ -6,6 +6,9 @@ type Query {
 
   posts: [Post]!
   post(id: ID!): Post
+
+  groups: [Group]!
+  group(id: ID!): Group
 }
 
 type Mutation {
@@ -14,4 +17,7 @@ type Mutation {
 
   createPost(post: PostCreateInput!): Post!
   updatePost(id: ID!, post: PostUpdateInput): Post!
+
+  createGroup(group: GroupCreateInput!): Group!
+  updateGroup(id: ID!, group: GroupUpdateInput): Group!
 }
