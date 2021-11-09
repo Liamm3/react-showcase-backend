@@ -2,7 +2,7 @@ import { User, MemberOf } from '../../../db/models'
 
 const groupFields = {
   Group: {
-    users: async group => {
+    users: async (group, _, { loaders }) => {
       const membersOf = await MemberOf.find({ group: group.id })
 
       const users = await User.find({
@@ -11,7 +11,7 @@ const groupFields = {
         }
       })
 
-      return users
+      return loaders.user.many(users.map(({ id }) => id))
     }
   }
 }

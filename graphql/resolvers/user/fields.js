@@ -1,17 +1,14 @@
-import { Group, MemberOf } from '../../../db/models'
+import { MemberOf, Post } from '../../../db/models'
 
 const userFields = {
   User: {
-    groups: async user => {
+    groups: async (user, _, { loaders }) => {
       const membersOf = await MemberOf.find({ user: user.id })
-
-      const groups = await Group.find({
-        _id: {
-          $in: membersOf.map(({ group }) => group)
-        }
-      })
-
-      return groups
+      return loaders.group.many(membersOf.map(({ group }) => group))
+    },
+    posts: async (user, _, { loaders }) => {
+      const posts = await Post.find({ user: user.id })
+      return loaders.post.many(posts.map(({ id }) => id))
     }
   }
 }
