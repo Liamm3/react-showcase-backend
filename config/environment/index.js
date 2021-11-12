@@ -13,4 +13,6 @@ const mongo = {
   url: process.env.MONGO_URI
 }
 
-export { port, env, mongo }
+const secret = process.env.SECRET
+
+export { port, env, mongo, secret }

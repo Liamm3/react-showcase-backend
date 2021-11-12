@@ -1,8 +1,8 @@
 type User implements Timestamps {
   id: ID!
-  firstName: String!
-  lastName: String!
+  username: String!
   email: String!
+  password: String!
   groups: [Group]
   posts: [Post]
 
@@ -10,14 +10,19 @@ type User implements Timestamps {
   updatedAt: Date!
 }
 
-input UserCreateInput {
-  firstName: String!
-  lastName: String!
+input RegisterUserInput {
+  username: String!
   email: String!
+  password: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }
 
 input UserUpdateInput {
-  firstName: String
-  lastName: String
+  username: String
+  password: String
   email: String
 }

@@ -20,14 +20,16 @@ const createLoader = Model => {
   }
 }
 
-const context = async () => {
+const context = async ({ req }) => {
   const loaders = {
     user: createLoader(User),
     post: createLoader(Post),
     group: createLoader(Group)
   }
 
-  return { loaders }
+  const user = req.user || null
+
+  return { loaders, user }
 }
 
 export default context

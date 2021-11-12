@@ -12,7 +12,8 @@ type Query {
 }
 
 type Mutation {
-  createUser(user: UserCreateInput!): User!
+  register(user: RegisterUserInput!): User!
+  login(email: String!, password: String!): String!
   updateUser(id: ID!, user: UserUpdateInput!): User!
   addUserToGroup(id: ID!, group: ID!): User!
 
