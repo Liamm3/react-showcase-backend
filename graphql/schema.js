@@ -1,7 +1,10 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import { applyMiddleware } from 'graphql-middleware'
 import { join } from 'path'
 import { readdirSync, readFileSync } from 'fs'
+
 import resolvers from './resolvers'
+import permissions from './permissions'
 
 const gqlFiles = readdirSync(join(__dirname, './typedefs'))
 
@@ -18,4 +21,4 @@ const schema = makeExecutableSchema({
   resolvers
 })
 
-export default schema
+export default applyMiddleware(schema, permissions)

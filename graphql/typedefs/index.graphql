@@ -3,6 +3,7 @@ scalar Date
 type Query {
   users: [User]!
   user(id: ID!): User
+  viewer: User!
 
   posts: [Post]!
   post(id: ID!): Post
